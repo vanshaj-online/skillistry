@@ -1,5 +1,5 @@
 import { Check, Mic } from "lucide-react";
-import type { PronunciationIssue } from "../../api/client";
+import type { PronunciationIssue } from "../../api/interviewClient";
 import Badge from "../ui/Badge";
 import Card from "../ui/Card";
 import SectionHeader from "../ui/SectionHeader";

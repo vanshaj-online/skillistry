@@ -1,10 +1,11 @@
 import { FileText, Check, Lightbulb } from "lucide-react";
-import type { ContentAnalysis, GrammarIssue } from "../../api/client";
+import type { ContentAnalysis, GrammarIssue, AnswerValidity } from "../../api/interviewClient";
 import Badge from "../ui/Badge";
 import Card from "../ui/Card";
 import SectionHeader from "../ui/SectionHeader";
+import { AlertCircle } from "lucide-react";
 
-interface ContentCardProps { data: ContentAnalysis; }
+interface ContentCardProps { data: ContentAnalysis; validity?: AnswerValidity | null; }
 
 type ToneVariant = "success" | "info" | "warning";
 function toneMeta(score: number): { variant: ToneVariant; label: string } {
@@ -100,7 +101,29 @@ function SuggestionCard({ suggestions }: { suggestions: string }) {
   );
 }
 
-export default function ContentCard({ data }: ContentCardProps) {
+export default function ContentCard({ data, validity }: ContentCardProps) {
+  if (validity && validity.status !== "VALID") {
+    return (
+      <Card id="content-card" className="space-y-4">
+        <SectionHeader
+          icon={<FileText size={15} />}
+          title="Content Analysis"
+        />
+        <div className="flex items-start gap-3 p-4 rounded-[var(--r-md)] border border-[var(--warning)] bg-orange-500/10">
+          <AlertCircle className="text-[var(--warning)] shrink-0 mt-0.5" size={18} />
+          <div>
+            <p className="text-sm font-semibold text-[var(--text-1)]">
+              No meaningful spoken answer detected.
+            </p>
+            <p className="text-xs text-[var(--text-2)] mt-1">
+              {validity.reason || "Content analysis is not available."}
+            </p>
+          </div>
+        </div>
+      </Card>
+    );
+  }
+
   const tone = toneMeta(data.tone.score);
   const tonePct = (((data.tone.score + 1) / 2) * 100).toFixed(0);
 

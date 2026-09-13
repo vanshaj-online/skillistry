@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Video, Square, RefreshCw, Camera } from "lucide-react";
 
 interface RecordVideoProps {
@@ -68,7 +68,7 @@ export default function RecordVideo({ onRecordComplete, disabled }: RecordVideoP
       recorder = new MediaRecorder(stream);
     }
     
-    const chunksRef = [];
+    const chunksRef: Blob[] = [];
 
     recorder.ondataavailable = (e) => {
       if (e.data && e.data.size > 0) {

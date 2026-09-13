@@ -1,5 +1,5 @@
 import { Eye } from "lucide-react";
-import type { ConfidenceAnalysis } from "../../api/client";
+import type { ConfidenceAnalysis } from "../../api/interviewClient";
 import Badge from "../ui/Badge";
 import Card from "../ui/Card";
 import ScoreRing from "../ui/ScoreRing";
@@ -7,10 +7,10 @@ import SectionHeader from "../ui/SectionHeader";
 
 interface ConfidenceCardProps { data: ConfidenceAnalysis; }
 
-const BLINK_VARIANTS: Record<string, "success" | "info" | "warning" | "danger" | "neutral"> = {
+const BLINK_VARIANTS: Record<string, "success" | "info" | "warning" | "neutral"> = {
   very_low: "info", low: "success", normal: "success", high: "warning", very_high: "warning",
 };
-const blinkVariant = (cat: string): "success" | "info" | "warning" | "danger" | "neutral" =>
+const blinkVariant = (cat: string): "success" | "info" | "warning" | "neutral" =>
   BLINK_VARIANTS[cat] ?? "neutral";
 
 const blinkLabel: Record<string, string> = {
