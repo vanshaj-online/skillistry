@@ -10,7 +10,7 @@ import { getInterviewReport } from "../../api/interviewClient";
 import type { InterviewReportResponse } from "../../api/interviewClient";
 import InterviewReportPage from "./InterviewReportPage";
 import { LoadingOverlay } from "../ui/Spinner";
-import { AlertTriangle } from "lucide-react";
+import ErrorState from "../ui/ErrorState";
 
 export default function InterviewReportRoute() {
   const params = useParams();
@@ -36,21 +36,12 @@ export default function InterviewReportRoute() {
 
   if (error || !report) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[55vh] gap-5 anim-up px-5">
-        <div
-          className="w-12 h-12 rounded-[var(--r-lg)] flex items-center justify-center"
-          style={{ background: "var(--warning-subtle)", border: "1px solid rgba(217,123,41,0.22)" }}
-        >
-          <AlertTriangle size={20} style={{ color: "var(--warning)" }} />
-        </div>
-        <div className="text-center space-y-1.5 max-w-sm">
-          <h2 className="text-sm font-semibold text-[var(--text-1)]">Could not load report</h2>
-          <p className="text-xs text-[var(--text-2)]">{error || "Report not found."}</p>
-        </div>
-        <button onClick={() => router.push("/interview")} className="btn-primary text-sm px-5 py-2">
-          Back to Interview
-        </button>
-      </div>
+      <ErrorState 
+        title="Could not load report" 
+        message={error || "Report not found."} 
+        onAction={() => router.push("/interview")} 
+        actionText="Back to Interview" 
+      />
     );
   }
 

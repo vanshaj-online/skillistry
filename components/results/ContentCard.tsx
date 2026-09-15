@@ -1,9 +1,8 @@
-import { FileText, Check, Lightbulb } from "lucide-react";
+import { FileText, Check, Lightbulb, AlertCircle } from "lucide-react";
 import type { ContentAnalysis, GrammarIssue, AnswerValidity } from "../../api/interviewClient";
 import Badge from "../ui/Badge";
 import Card from "../ui/Card";
 import SectionHeader from "../ui/SectionHeader";
-import { AlertCircle } from "lucide-react";
 
 interface ContentCardProps { data: ContentAnalysis; validity?: AnswerValidity | null; }
 

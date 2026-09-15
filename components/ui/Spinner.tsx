@@ -13,11 +13,9 @@ export default function Spinner({ size = 16, className = "" }: SpinnerProps) {
 }
 
 
-export function LoadingOverlay({ label = "Analyzing your interview…" }: { label?: string }) {
+export function AnalyzingSteps({ label = "Analyzing your interview…" }: { label?: string }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[58vh] gap-7 anim-fade">
-
-      
+    <div className="flex flex-col items-center gap-4">
       <div className="flex items-center gap-2">
         <span className="dot" />
         <span className="dot" />
@@ -31,10 +29,9 @@ export function LoadingOverlay({ label = "Analyzing your interview…" }: { labe
         >
           {label}
         </p>
-        <p className="text-xs text-[var(--text-3)]">This may take 30–90 s</p>
+        <p className="text-xs text-[var(--text-3)]">This may take 30–90 seconds</p>
       </div>
 
-      
       <ul className="space-y-2.5 text-xs text-[var(--text-3)] text-left w-56">
         {[
           "Transcribing audio",
@@ -57,6 +54,14 @@ export function LoadingOverlay({ label = "Analyzing your interview…" }: { labe
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+export function LoadingOverlay({ label = "Analyzing your interview…" }: { label?: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[58vh] gap-7 anim-fade">
+      <AnalyzingSteps label={label} />
     </div>
   );
 }

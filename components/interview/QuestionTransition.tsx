@@ -1,5 +1,6 @@
-﻿import { CheckCircle2, ChevronRight } from "lucide-react";
+import { CheckCircle2, ChevronRight } from "lucide-react";
 import type { QuestionItem } from "../../api/interviewClient";
+import { AnalyzingSteps } from "../ui/Spinner";
 
 interface QuestionTransitionProps {
   completedQuestionNumber: number;
@@ -40,34 +41,7 @@ export default function QuestionTransition({
       </p>
 
       {isAnalyzing ? (
-        <div className="flex flex-col items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="dot" />
-            <span className="dot" />
-            <span className="dot" />
-          </div>
-          <p className="text-sm font-medium text-[var(--text-1)]">Analyzing your response…</p>
-          <p className="text-xs text-[var(--text-3)]">This may take 30–90 seconds</p>
-
-          <ul className="space-y-2 text-xs text-[var(--text-3)] text-left w-52 mt-2">
-            {[
-              "Transcribing audio",
-              "Analyzing speech patterns",
-              "Evaluating facial expressions",
-              "Generating coaching feedback",
-            ].map((step, i) => (
-              <li key={step} className="flex items-center gap-3">
-                <span
-                  className="text-[var(--accent)] opacity-60 animate-pulse"
-                  style={{ fontFamily: "var(--font-mono)", fontSize: "10px", animationDelay: `${i * 0.35}s` }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {step}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <AnalyzingSteps label="Analyzing your response…" />
       ) : (
         <div className="flex flex-col items-center gap-4">
           <p className="text-xs text-[var(--success)] font-medium mb-2">Analysis complete</p>

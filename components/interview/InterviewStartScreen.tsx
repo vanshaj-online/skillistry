@@ -1,4 +1,5 @@
 import { ArrowRight, Video } from "lucide-react";
+import PulseBadge from "../ui/PulseBadge";
 
 interface InterviewStartScreenProps {
   onStart: () => void;
@@ -18,18 +19,7 @@ export default function InterviewStartScreen({ onStart, isLoading }: InterviewSt
     <div className="flex-1 w-full max-w-2xl mx-auto px-5 py-10 md:py-16 flex flex-col items-center text-center anim-fade">
       
       {/* Header */}
-      <div
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border"
-        style={{
-          background: "var(--accent-subtle)",
-          borderColor: "var(--accent-border)",
-          color: "var(--accent)",
-          fontFamily: "var(--font-mono)",
-        }}
-      >
-        <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent)" }} />
-        AI Mock Interview
-      </div>
+      <PulseBadge>AI Mock Interview</PulseBadge>
 
       <h1
         className="text-3xl md:text-4xl font-semibold tracking-tight text-[var(--text-1)] mb-4 leading-tight"

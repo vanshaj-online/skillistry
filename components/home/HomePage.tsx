@@ -1,6 +1,7 @@
 "use client";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import PulseBadge from "../ui/PulseBadge";
 
 export default function HomePage() {
   const router = useRouter();
@@ -23,18 +24,7 @@ export default function HomePage() {
             
             {/* Left Column: Text Content */}
             <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <div
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-widest mb-6 border"
-                style={{
-                  background: "var(--accent-subtle)",
-                  borderColor: "var(--accent-border)",
-                  color: "var(--accent)",
-                  fontFamily: "var(--font-mono)",
-                }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent)" }} />
-                AI MOCK INTERVIEW
-              </div>
+              <PulseBadge>AI MOCK INTERVIEW</PulseBadge>
 
               <h1
                 className="max-w-[500px] text-5xl sm:text-[3.5rem] lg:text-[4rem] font-semibold tracking-tight text-[var(--text-1)] leading-[1.05] mb-6"
